@@ -1,0 +1,174 @@
+.uploadContainer {
+  width: 100%;
+  height: 100%;
+  min-height: 200px;
+}
+
+.uploadArea {
+  border: 2px dashed var(--border-color);
+  border-radius: var(--border-radius);
+  padding: var(--spacing-xl);
+  text-align: center;
+  background-color: var(--bg-accent);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.uploadArea:hover:not(.disabled) {
+  border-color: var(--primary-color);
+  background-color: var(--bg-secondary);
+  transform: translateY(-2px);
+}
+
+.dragOver {
+  border-color: var(--primary-color);
+  background-color: var(--bg-secondary);
+  box-shadow: 0 4px 12px rgba(0, 123, 255, 0.15);
+}
+
+.disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.uploadPrompt h3 {
+  color: var(--text-primary);
+  margin-bottom: var(--spacing-sm);
+  font-size: 1.25rem;
+}
+
+.uploadPrompt p {
+  color: var(--text-secondary);
+  margin-bottom: var(--spacing-md);
+  font-size: 1rem;
+}
+
+.uploadIcon {
+  font-size: 3rem;
+  margin-bottom: var(--spacing-md);
+  opacity: 0.7;
+}
+
+.supportedFormats {
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+  font-style: italic;
+}
+
+.uploadingState {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-md);
+}
+
+.spinner {
+  width: 40px;
+  height: 40px;
+  border: 4px solid var(--border-color);
+  border-top: 4px solid var(--primary-color);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.videoPreview {
+  background-color: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius);
+  padding: var(--spacing-lg);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 100%;
+}
+
+.videoInfo h4 {
+  color: var(--text-primary);
+  margin-bottom: var(--spacing-xs);
+  font-size: 1rem;
+  word-break: break-word;
+}
+
+.videoInfo p {
+  color: var(--text-secondary);
+  font-size: 0.875rem;
+}
+
+.videoActions {
+  display: flex;
+  gap: var(--spacing-sm);
+  flex-shrink: 0;
+}
+
+.changeButton,
+.removeButton {
+  padding: var(--spacing-sm) var(--spacing-md);
+  border: none;
+  border-radius: calc(var(--border-radius) / 2);
+  font-size: 0.875rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-weight: 500;
+}
+
+.changeButton {
+  background-color: var(--primary-color);
+  color: white;
+}
+
+.changeButton:hover:not(:disabled) {
+  background-color: var(--primary-hover);
+}
+
+.removeButton {
+  background-color: var(--error-color);
+  color: white;
+}
+
+.removeButton:hover:not(:disabled) {
+  background-color: #c82333;
+}
+
+.changeButton:disabled,
+.removeButton:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.hiddenInput {
+  display: none;
+}
+
+/* Mobile responsive */
+@media (max-width: 768px) {
+  .uploadArea {
+    padding: var(--spacing-lg);
+  }
+  
+  .uploadIcon {
+    font-size: 2rem;
+  }
+  
+  .uploadPrompt h3 {
+    font-size: 1.125rem;
+  }
+  
+  .videoPreview {
+    flex-direction: column;
+    gap: var(--spacing-md);
+    text-align: center;
+  }
+  
+  .videoActions {
+    justify-content: center;
+  }
+}
