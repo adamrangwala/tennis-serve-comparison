@@ -18,11 +18,11 @@
 
 **Project Infrastructure**
 - [x] ✅ Create documentation structure
-- [ ] 🔄 Initialize Create React App
+- [x] 🔄 Initialize Create React App
 - [ ] ⏳ Install Video.js and dependencies
 - [ ] ⏳ Set up basic folder structure (/components, /utils, /styles)
 - [ ] ⏳ Configure ESLint and Prettier
-- [ ] ⏳ Create initial Git repository
+- [x] ⏳ Create initial Git repository
 
 **Basic Layout**
 - [ ] ⏳ Create main App component structure

@@ -1,23 +1,39 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import './styles/globals.css';
+import './styles/variables.css';
+import styles from './App.module.css';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+    <div className={styles.app}>
+      <header className={styles.header}>
+        <h1>Tennis Serve Comparison</h1>
+        <p>Analyze and compare tennis serves frame by frame</p>
       </header>
+      
+      <main className={styles.main}>
+        <div className={styles.videoSection}>
+          <div className={styles.videoContainer}>
+            <h2>Your Serve</h2>
+            <div className={styles.videoPlaceholder}>
+              <p>Upload your serve video</p>
+            </div>
+          </div>
+          
+          <div className={styles.videoContainer}>
+            <h2>Professional Serve</h2>
+            <div className={styles.videoPlaceholder}>
+              <p>Upload professional serve video</p>
+            </div>
+          </div>
+        </div>
+        
+        <div className={styles.controlsSection}>
+          <div className={styles.controlsPlaceholder}>
+            <p>Video controls will appear here</p>
+          </div>
+        </div>
+      </main>
     </div>
   );
 }
