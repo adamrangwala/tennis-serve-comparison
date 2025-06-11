@@ -1,0 +1,184 @@
+.videoPlayerContainer {
+  width: 100%;
+  height: 100%;
+  min-height: 300px;
+  position: relative;
+  background-color: var(--video-bg);
+  border-radius: var(--border-radius);
+  overflow: hidden;
+}
+
+.noVideoState {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  background-color: var(--bg-accent);
+  border: 2px dashed var(--border-color);
+  border-radius: var(--border-radius);
+}
+
+.noVideoIcon {
+  font-size: 3rem;
+  margin-bottom: var(--spacing-md);
+  opacity: 0.5;
+}
+
+.noVideoState p {
+  color: var(--text-secondary);
+  font-size: 1rem;
+}
+
+.playerWrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background-color: var(--video-bg);
+}
+
+.videoContainer {
+  width: 100%;
+  height: 100%;
+}
+
+.videoContainer.disabled {
+  opacity: 0.7;
+  pointer-events: none;
+}
+
+/* Override Video.js default styles */
+.videoContainer .video-js {
+  width: 100% !important;
+  height: 100% !important;
+  background-color: var(--video-bg);
+}
+
+.videoContainer .video-js .vjs-tech {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: contain;
+}
+
+/* Custom Video.js control bar styling */
+.videoContainer .video-js .vjs-control-bar {
+  background: var(--control-bg);
+  font-family: inherit;
+}
+
+.videoContainer .video-js .vjs-button > .vjs-icon-placeholder:before {
+  color: white;
+}
+
+.videoContainer .video-js .vjs-progress-control .vjs-progress-holder {
+  background-color: rgba(255, 255, 255, 0.3);
+}
+
+.videoContainer .video-js .vjs-progress-control .vjs-play-progress {
+  background-color: var(--primary-color);
+}
+
+.loadingOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+  color: white;
+}
+
+.spinner {
+  width: 40px;
+  height: 40px;
+  border: 4px solid rgba(255, 255, 255, 0.3);
+  border-top: 4px solid white;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin-bottom: var(--spacing-md);
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.errorState {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: var(--bg-accent);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid var(--error-color);
+  border-radius: var(--border-radius);
+  z-index: 10;
+}
+
+.errorIcon {
+  font-size: 2rem;
+  margin-bottom: var(--spacing-md);
+}
+
+.errorState p {
+  color: var(--error-color);
+  text-align: center;
+  font-weight: 500;
+}
+
+.syncIndicator {
+  position: absolute;
+  top: var(--spacing-sm);
+  right: var(--spacing-sm);
+  background-color: var(--control-bg);
+  color: white;
+  padding: var(--spacing-xs) var(--spacing-sm);
+  border-radius: calc(var(--border-radius) / 2);
+  font-size: 0.75rem;
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+  z-index: 5;
+}
+
+.syncIcon {
+  font-size: 0.875rem;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .videoPlayerContainer {
+    min-height: 250px;
+  }
+  
+  .noVideoIcon {
+    font-size: 2rem;
+  }
+  
+  .syncIndicator {
+    top: var(--spacing-xs);
+    right: var(--spacing-xs);
+    padding: var(--spacing-xs);
+    font-size: 0.625rem;
+  }
+}
+
+/* Video.js responsive overrides */
+@media (max-width: 768px) {
+  .videoContainer .video-js .vjs-control-bar {
+    font-size: 1.2em;
+  }
+  
+  .videoContainer .video-js .vjs-button {
+    width: 3em;
+  }
+}
