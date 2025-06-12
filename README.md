@@ -1,5 +1,5 @@
 # Tennis Serve Comparison App
-MAIN TEST
+
 A React-based web application for analyzing and comparing tennis serves through synchronized video playback and frame-by-frame analysis.
 
 ## 🎯 Current Status
