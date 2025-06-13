@@ -1,3 +1,5 @@
+/* File: src/components/VideoPlayer/VideoPlayer.module.css */
+
 .videoPlayerContainer {
   width: 100%;
   height: 100%;
@@ -6,40 +8,16 @@
   background-color: var(--video-bg);
   border-radius: var(--border-radius);
   overflow: hidden;
-}
-
-.noVideoState {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  height: 100%;
-  background-color: var(--bg-accent);
-  border: 2px dashed var(--border-color);
-  border-radius: var(--border-radius);
 }
 
-.noVideoIcon {
-  font-size: 3rem;
-  margin-bottom: var(--spacing-md);
-  opacity: 0.5;
-}
-
-.noVideoState p {
-  color: var(--text-secondary);
-  font-size: 1rem;
-}
-
-.playerWrapper {
+.videoContainer {
+  flex: 1;
   position: relative;
   width: 100%;
   height: 100%;
   background-color: var(--video-bg);
-}
-
-.videoContainer {
-  width: 100%;
-  height: 100%;
 }
 
 .videoContainer.disabled {
@@ -47,57 +25,121 @@
   pointer-events: none;
 }
 
-/* Override Video.js default styles */
+/* Video.js player overrides */
 .videoContainer .video-js {
   width: 100% !important;
   height: 100% !important;
   background-color: var(--video-bg);
+  border-radius: var(--border-radius);
+  font-family: inherit;
 }
 
 .videoContainer .video-js .vjs-tech {
   width: 100% !important;
   height: 100% !important;
   object-fit: contain;
+  border-radius: var(--border-radius);
 }
 
-/* Custom Video.js control bar styling */
+/* Control bar styling */
 .videoContainer .video-js .vjs-control-bar {
-  background: var(--control-bg);
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
   font-family: inherit;
+  height: 3em;
+  padding: 0 1em;
 }
 
 .videoContainer .video-js .vjs-button > .vjs-icon-placeholder:before {
   color: white;
+  font-size: 1.8em;
+}
+
+.videoContainer .video-js .vjs-button:hover {
+  color: var(--primary-color);
+}
+
+/* Progress bar styling */
+.videoContainer .video-js .vjs-progress-control {
+  height: 0.5em;
 }
 
 .videoContainer .video-js .vjs-progress-control .vjs-progress-holder {
   background-color: rgba(255, 255, 255, 0.3);
+  height: 100%;
 }
 
 .videoContainer .video-js .vjs-progress-control .vjs-play-progress {
   background-color: var(--primary-color);
 }
 
+.videoContainer .video-js .vjs-progress-control .vjs-load-progress {
+  background-color: rgba(255, 255, 255, 0.5);
+}
+
+/* Volume control */
+.videoContainer .video-js .vjs-volume-panel {
+  width: auto;
+}
+
+.videoContainer .video-js .vjs-volume-control {
+  background-color: rgba(0, 0, 0, 0.8);
+  border-radius: 4px;
+}
+
+/* Time display */
+.videoContainer .video-js .vjs-time-control {
+  color: white;
+  font-size: 1em;
+  line-height: 2;
+}
+
+.videoContainer .video-js .vjs-current-time-display,
+.videoContainer .video-js .vjs-duration-display {
+  color: white;
+}
+
+/* Playback rate menu */
+.videoContainer .video-js .vjs-playback-rate .vjs-menu {
+  background-color: rgba(0, 0, 0, 0.9);
+  border-radius: 4px;
+}
+
+.videoContainer .video-js .vjs-playback-rate .vjs-menu-item {
+  color: white;
+  padding: 0.5em 1em;
+}
+
+.videoContainer .video-js .vjs-playback-rate .vjs-menu-item:hover {
+  background-color: var(--primary-color);
+}
+
+/* Fullscreen button */
+.videoContainer .video-js .vjs-fullscreen-control {
+  order: 10;
+}
+
+/* Loading states */
 .loadingOverlay {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.7);
+  background-color: rgba(0, 0, 0, 0.8);
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  z-index: 10;
+  z-index: 100;
   color: white;
+  border-radius: var(--border-radius);
 }
 
 .spinner {
-  width: 40px;
-  height: 40px;
+  width: 50px;
+  height: 50px;
   border: 4px solid rgba(255, 255, 255, 0.3);
-  border-top: 4px solid white;
+  border-top: 4px solid var(--primary-color);
   border-radius: 50%;
   animation: spin 1s linear infinite;
   margin-bottom: var(--spacing-md);
@@ -108,6 +150,12 @@
   100% { transform: rotate(360deg); }
 }
 
+.loadingOverlay p {
+  font-size: 1rem;
+  margin: 0;
+}
+
+/* Error state */
 .errorState {
   position: absolute;
   top: 0;
@@ -121,64 +169,198 @@
   justify-content: center;
   border: 2px solid var(--error-color);
   border-radius: var(--border-radius);
-  z-index: 10;
+  z-index: 100;
+  padding: var(--spacing-lg);
+  text-align: center;
 }
 
 .errorIcon {
-  font-size: 2rem;
+  font-size: 3rem;
   margin-bottom: var(--spacing-md);
 }
 
 .errorState p {
   color: var(--error-color);
-  text-align: center;
   font-weight: 500;
+  margin-bottom: var(--spacing-md);
+  font-size: 1rem;
 }
 
+.retryButton {
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  padding: var(--spacing-sm) var(--spacing-md);
+  border-radius: calc(var(--border-radius) / 2);
+  cursor: pointer;
+  font-size: 0.875rem;
+  font-weight: 500;
+  transition: background-color 0.2s ease;
+}
+
+.retryButton:hover {
+  background-color: var(--primary-hover);
+}
+
+/* No video state */
+.noVideoState {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  background-color: var(--bg-accent);
+  border: 2px dashed var(--border-color);
+  border-radius: var(--border-radius);
+  padding: var(--spacing-lg);
+  text-align: center;
+}
+
+.noVideoIcon {
+  font-size: 4rem;
+  margin-bottom: var(--spacing-md);
+  opacity: 0.5;
+}
+
+.noVideoState p {
+  color: var(--text-primary);
+  font-size: 1.125rem;
+  font-weight: 500;
+  margin-bottom: var(--spacing-xs);
+}
+
+.noVideoState span {
+  color: var(--text-secondary);
+  font-size: 0.875rem;
+}
+
+/* Sync indicator */
 .syncIndicator {
   position: absolute;
   top: var(--spacing-sm);
   right: var(--spacing-sm);
-  background-color: var(--control-bg);
+  background-color: rgba(0, 0, 0, 0.8);
   color: white;
   padding: var(--spacing-xs) var(--spacing-sm);
   border-radius: calc(var(--border-radius) / 2);
   font-size: 0.75rem;
+  font-weight: 500;
   display: flex;
   align-items: center;
   gap: var(--spacing-xs);
-  z-index: 5;
+  z-index: 50;
+  backdrop-filter: blur(4px);
 }
 
 .syncIcon {
   font-size: 0.875rem;
 }
 
-/* Responsive adjustments */
+/* Video metadata */
+.videoMetadata {
+  background-color: var(--bg-secondary);
+  padding: var(--spacing-sm) var(--spacing-md);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid var(--border-color);
+  font-size: 0.875rem;
+}
+
+.videoName {
+  color: var(--text-primary);
+  font-weight: 500;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  flex: 1;
+  margin-right: var(--spacing-md);
+}
+
+.videoSize {
+  color: var(--text-secondary);
+  flex-shrink: 0;
+}
+
+/* Hide Video.js error messages that we handle ourselves */
+.videoContainer .video-js .vjs-error-display {
+  display: none !important;
+}
+
+/* Big play button styling */
+.videoContainer .video-js .vjs-big-play-button {
+  background-color: rgba(0, 0, 0, 0.8);
+  border: 3px solid var(--primary-color);
+  border-radius: 50%;
+  width: 80px;
+  height: 80px;
+  line-height: 74px;
+  font-size: 2.5em;
+  top: 50%;
+  left: 50%;
+  margin-left: -40px;
+  margin-top: -40px;
+  transition: all 0.2s ease;
+}
+
+.videoContainer .video-js .vjs-big-play-button:hover {
+  background-color: var(--primary-color);
+  transform: scale(1.1);
+}
+
+.videoContainer .video-js .vjs-big-play-button .vjs-icon-placeholder:before {
+  color: white;
+}
+
+/* Responsive design */
 @media (max-width: 768px) {
   .videoPlayerContainer {
     min-height: 250px;
   }
   
   .noVideoIcon {
-    font-size: 2rem;
+    font-size: 3rem;
   }
   
   .syncIndicator {
     top: var(--spacing-xs);
     right: var(--spacing-xs);
-    padding: var(--spacing-xs);
+    padding: 4px 8px;
     font-size: 0.625rem;
+  }
+  
+  .videoMetadata {
+    padding: var(--spacing-xs) var(--spacing-sm);
+    font-size: 0.75rem;
+  }
+  
+  .videoName {
+    margin-right: var(--spacing-sm);
+  }
+
+  /* Mobile Video.js adjustments */
+  .videoContainer .video-js .vjs-control-bar {
+    height: 2.5em;
+    padding: 0 0.5em;
+  }
+  
+  .videoContainer .video-js .vjs-button > .vjs-icon-placeholder:before {
+    font-size: 1.5em;
+  }
+  
+  .videoContainer .video-js .vjs-big-play-button {
+    width: 60px;
+    height: 60px;
+    line-height: 54px;
+    margin-left: -30px;
+    margin-top: -30px;
+    font-size: 2em;
   }
 }
 
-/* Video.js responsive overrides */
-@media (max-width: 768px) {
-  .videoContainer .video-js .vjs-control-bar {
-    font-size: 1.2em;
-  }
-  
-  .videoContainer .video-js .vjs-button {
-    width: 3em;
+/* Print styles */
+@media print {
+  .videoPlayerContainer {
+    display: none;
   }
 }

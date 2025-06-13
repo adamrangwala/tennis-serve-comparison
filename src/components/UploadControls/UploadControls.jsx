@@ -18,12 +18,11 @@ const UploadControls = ({
       setIsDragOver(true);
     }
   };
-
   const handleDragLeave = (e) => {
     e.preventDefault();
     setIsDragOver(false);
   };
-
+  
   const handleDrop = (e) => {
     e.preventDefault();
     setIsDragOver(false);
